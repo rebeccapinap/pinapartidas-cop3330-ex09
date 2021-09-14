@@ -13,8 +13,9 @@ public class App
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        // Conversion constant
+        // Conversion constant = 1 / 350
         final double conversion = 0.002857143;
+        int leftover = 0;
 
         // Calculates the gallons needed for a certain area
         System.out.print("What is the length of the room in feet? ");
@@ -24,8 +25,14 @@ public class App
         double width = input.nextDouble();
 
         double f2 = length * width;
-        int numGallons = (int) ((f2 * conversion) + 1);
+        int numGallons = (int) ((f2 * conversion));
+        leftover = (int) (f2 % 350);
 
-        System.out.format("You will need to purchase %d gallons of paint to cover 360 square feet.", numGallons);
+        if (leftover > 0)
+        {
+            numGallons++;
+        }
+
+        System.out.format("You will need to purchase %d gallons of paint to cover %.0f square feet.", numGallons, f2);
     }
 }
